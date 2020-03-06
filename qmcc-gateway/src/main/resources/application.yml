@@ -1,0 +1,14 @@
+server:
+  port: 21000
+spring:
+  application:
+    name: qmcc-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:20000/eureka
+    registry-fetch-interval-seconds: 5
+zuul:
+  prefix: /api
+  routes:
+    item-service: /item/**  路由到货物的微服务
