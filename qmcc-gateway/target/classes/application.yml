@@ -11,4 +11,5 @@ eureka:
 zuul:
   prefix: /api
   routes:
-    item-service: /item/**  路由到货物的微服务
+    #item-service: /item/**
+    item-service: /auth/**  #路由到货物的微服务

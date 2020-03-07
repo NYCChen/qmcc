@@ -9,8 +9,8 @@
         <module name="qmcc-common" />
         <module name="qmcc-gateway" />
         <module name="qmcc-item-interface" />
-        <module name="qmcc-registry" />
         <module name="qmcc-item-service" />
+        <module name="qmcc-registry" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
