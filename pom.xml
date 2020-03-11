@@ -6,13 +6,14 @@
 
     <groupId>com.qmcc.parent</groupId>
     <artifactId>qmcc</artifactId>
-    <packaging>pom</packaging>
+<!--    <packaging>pom</packaging>-->
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>qmcc-registry</module>
         <module>qmcc-gateway</module>
         <module>qmcc-item</module>
         <module>qmcc-common</module>
+        <module>qmcc-work</module>
     </modules>
 
     <name>qmcc</name>

@@ -2,23 +2,30 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="qmcc-common" />
-        <module name="qmcc-gateway" />
         <module name="qmcc-item-interface" />
-        <module name="qmcc-item-service" />
+        <module name="qmcc-work" />
+        <module name="qmcc-gateway" />
         <module name="qmcc-registry" />
+        <module name="qmcc" />
+        <module name="qmcc-item-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="0520ERP" target="1.8" />
+      <module name="qmcc-work2 (1)" target="1.8" />
+      <module name="qmcc-work2 (2)" target="1.8" />
       <module name="qmcc.item.interface" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="0520ERP" options="-parameters" />
       <module name="qmcc" options="-parameters" />
       <module name="qmcc-common" options="-parameters" />
       <module name="qmcc-gateway" options="-parameters" />
@@ -26,6 +33,8 @@
       <module name="qmcc-item-interface" options="-parameters" />
       <module name="qmcc-item-service" options="-parameters" />
       <module name="qmcc-registry" options="-parameters" />
+      <module name="qmcc-work" options="-parameters" />
+      <module name="qmcc-work2 (2)" options="-parameters" />
     </option>
   </component>
 </project>
