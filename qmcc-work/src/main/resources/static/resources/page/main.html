@@ -30,7 +30,7 @@
 	</div>
 
 	<script type="text/javascript" src="/resources/layui/layui.js"></script>
-	
+
 	<script type="text/javascript">
 	//获取系统时间
 	var newDate = '';
@@ -76,7 +76,7 @@
 	    //最新文章列表
 	    $.get("../json/newsList.json",function(data){
 	        var hotNewsHtml = '';
-	        for(var i=0;i<5;i++){
+	        for(var i=0;i<15;i++){
 	            hotNewsHtml += '<tr>'
 	                +'<td align="left"><a href="javascript:;"> '+data.data[i].newsName+'</a></td>'
 	                +'<td>'+data.data[i].newsTime.substring(0,10)+'</td>'

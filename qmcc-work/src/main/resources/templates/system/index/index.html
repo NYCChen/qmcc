@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
-	<title>仓库管理后台首页</title>
+	<title>QMCC管理后台首页</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta http-equiv="Access-Control-Allow-Origin" content="*">
@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="/resources/layui/css/layui.css" media="all" />
 	<link rel="stylesheet" href="/resources/css/index.css" media="all" />
 </head>
-<body class="main_body">
+<body class="main_body close-footer">
 	<div class="layui-layout layui-layout-admin">
 		<!-- 顶部 -->
 		<div class="layui-header header">
@@ -31,7 +31,7 @@
 						<a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a>
 					</li>
 					<li class="layui-nav-item" id="userInfo">
-						<a href="javascript:;"><img src="/resources/images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite class="adminName">驊驊龔頾</cite></a>
+						<a href="javascript:;"><img src="/resources/images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite class="adminName" th:text="${session.user.name}"></cite></a>
 						<dl class="layui-nav-child">
 							<dd><a href="javascript:;" data-url="/resouces/page/user/userInfo.html"><i class="seraph icon-ziliao" data-icon="icon-ziliao"></i><cite>个人资料</cite></a></dd>
 							<dd><a href="javascript:;" data-url="/resouces/page/user/changePwd.html"><i class="seraph icon-xiugai" data-icon="icon-xiugai"></i><cite>修改密码</cite></a></dd>
@@ -45,7 +45,7 @@
 		<div class="layui-side layui-bg-black">
 			<div class="user-photo">
 				<a class="img" title="我的头像" ><img src="/resources/images/face.jpg" class="userAvatar"></a>
-				<p>你好！<span class="userName">超级管理员</span>, 欢迎登录</p>
+				<p>你好！<span class="userName"th:text="${session.user.name}">超级管理员</span>, 欢迎登录</p>
 			</div>
 			<!-- 搜索 -->
 			<div class="layui-form component">
@@ -89,7 +89,7 @@
 		</div>
 		<!-- 底部 -->
 		<div class="layui-footer footer">
-			<p><span>copyright @2019 WHSXT</span></p>
+			<p><span>QMCC-2020</span></p>
 		</div>
 	</div>
 
@@ -99,7 +99,7 @@
 
 	<script type="text/javascript" src="/resources/layui/layui.js"></script>
 	<script type="text/javascript" src="/resources/js/cache.js"></script>
-	
+
 	<script type="text/javascript">
 	var $,tab,dataStr,layer;
 	layui.config({
@@ -230,6 +230,7 @@
 		tab.tabAdd(_this);
 	}
 
+/*
 	//捐赠弹窗
 	function donation(){
 		layer.tab({
@@ -243,6 +244,7 @@
 			}]
 		})
 	}
+*/
 
 	//图片管理弹窗
 	function showImg(){

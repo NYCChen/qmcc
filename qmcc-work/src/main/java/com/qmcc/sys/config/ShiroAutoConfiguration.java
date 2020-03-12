@@ -26,11 +26,6 @@ import com.qmcc.sys.realm.UserRealm;
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import lombok.Data;
 
-/**
- *
- * @author LJH
- *
- */
 @Configuration
 @ConditionalOnWebApplication(type = Type.SERVLET)
 @ConditionalOnClass(value = { SecurityManager.class })
