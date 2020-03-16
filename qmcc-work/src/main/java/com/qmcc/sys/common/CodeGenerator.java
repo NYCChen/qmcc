@@ -17,8 +17,6 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
 /**
  * mp生成器
- * @author LJH
- *
  */
 public class CodeGenerator {
 
