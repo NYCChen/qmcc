@@ -48,7 +48,7 @@ public class SystemController {
 	}
 
 
-
+/***********部门管理开始************/
 	/**
 	 * 跳转到部门管理
 	 */
@@ -74,4 +74,34 @@ public class SystemController {
 		return "system/dept/deptRight";
 	}
 
+	/***********部门管理结束************/
+
+
+	/***********菜单管理开始************/
+	/**
+	 * 跳转到菜单管理
+	 */
+	@RequestMapping("toMenuManager")
+	public String toMenuManager() {
+		return "system/menu/menuManager";
+	}
+
+	/**
+	 * 跳转到菜单管理-left
+	 */
+	@RequestMapping("toMenuLeft")
+	public String toMenuLeft() {
+		return "system/menu/menuLeft";
+	}
+
+
+	/**
+	 * 跳转到菜单管理--right
+	 */
+	@RequestMapping("toMenuRight")
+	public String toMenuRight() {
+		return "system/menu/menuRight";
+	}
+
+	/***********菜单管理结束************/
 }

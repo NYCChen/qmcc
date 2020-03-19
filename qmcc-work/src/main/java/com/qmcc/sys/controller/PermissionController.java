@@ -6,4 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sys/permission")
 public class PermissionController {
+
+
 }
