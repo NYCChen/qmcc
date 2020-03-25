@@ -14,10 +14,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.qmcc.sys.common.ActiverUser;
 import com.qmcc.sys.domain.User;
 import com.qmcc.sys.service.UserService;
+import org.springframework.context.annotation.Lazy;
 
 public class UserRealm extends AuthorizingRealm {
 
 	@Autowired
+	//@Lazy //只有使用的时候才会加载
 	private UserService userService;
 
 	@Override

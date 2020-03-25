@@ -19,6 +19,11 @@ public class TreeNode {
 	private String href;
 	private Boolean spread;
 	private List<TreeNode> children=new ArrayList<TreeNode>();
+
+	private String checkArr = "0";//0 不选中 1选中
+
+
+
 	/**
 	 *首页左边导航树的构造器
 	 */
@@ -40,4 +45,12 @@ public class TreeNode {
 		this.title = title;
 		this.spread = spread;
     }
+
+	public TreeNode(Integer id, Integer pid, String title, Boolean spread, String checkArr) {
+		this.id = id;
+		this.pid = pid;
+		this.title = title;
+		this.spread = spread;
+		this.checkArr = checkArr;
+	}
 }

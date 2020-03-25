@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/permission")
+@RequestMapping("permission")
 public class PermissionController {
 
     @Autowired
@@ -56,7 +56,7 @@ public class PermissionController {
         queryWrapper.eq("type",Constast.TYPE_PERMISSION);//只能查询权限
         queryWrapper.like(StringUtils.isNotBlank(permissionVo.getTitle()), "title", permissionVo.getTitle());
         queryWrapper.like(StringUtils.isNotBlank(permissionVo.getPercode()), "percode", permissionVo.getPercode());
-        queryWrapper.eq(permissionVo.getId()!=null, "id", permissionVo.getId()).or().eq(permissionVo.getId()!=null,"pid", permissionVo.getId());
+        queryWrapper.eq(permissionVo.getId()!=null,"pid", permissionVo.getId());
         queryWrapper.orderByAsc("ordernum");
         this.permissionService.page(page, queryWrapper);
         return new DataGridView(page.getTotal(), page.getRecords());
