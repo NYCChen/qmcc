@@ -25,4 +25,11 @@ public interface RoleService extends IService<Role> {
      * 保存角色和菜单权限之间的关系
      */
     void saveRolePermission(Integer rid, Integer[] ids);
+
+    /**
+     * 查询当前用户拥有的角色ID集合
+     * @param id
+     * @return
+     */
+    List<Integer> queryUserRoleIdsByUid(Integer id);
 }

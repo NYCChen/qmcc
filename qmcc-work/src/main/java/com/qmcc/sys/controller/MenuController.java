@@ -8,6 +8,8 @@ import com.qmcc.sys.domain.Dept;
 import com.qmcc.sys.domain.Permission;
 import com.qmcc.sys.domain.User;
 import com.qmcc.sys.service.PermissionService;
+import com.qmcc.sys.service.RoleService;
+import com.qmcc.sys.service.UserService;
 import com.qmcc.sys.vo.DeptVo;
 import com.qmcc.sys.vo.PermissionVo;
 import org.apache.commons.lang3.StringUtils;
@@ -25,6 +27,9 @@ public class MenuController {
     @Autowired
     private PermissionService permissionService;
 
+    @Autowired
+    private RoleService roleService;
+
     @RequestMapping("loadIndexLeftMenuJson")
     public DataGridView loadIndexLeftMenuJson(PermissionVo permissionVo){
         // 查询所有菜单
@@ -39,7 +44,24 @@ public class MenuController {
             list = permissionService.list(queryWrapper);
         } else {
             // 根据用户id + 角色 + 查询
-            list = permissionService.list(queryWrapper);
+            Integer userId = user.getId();
+            //根据用户id查询角色
+            List<Integer> currentUserRoleIds = roleService.queryUserRoleIdsByUid(userId);
+            // 根据角色id取到权限和菜单id
+            Set<Integer> pids = new HashSet<>();
+            for (Integer rid : currentUserRoleIds){
+                List<Integer> permissionIds = roleService.queryRolePermissionIdsByRid(rid);
+                pids.addAll(permissionIds);
+            }
+            //根据角色id查询权限
+            if (pids.size() > 0){
+                //permission表的 id 列的数据在pids集合中
+                //in("age",{1,2,3})--->age in (1,2,3)
+                queryWrapper.in("id", pids);
+                list = permissionService.list(queryWrapper);
+            } else {
+                list = new ArrayList<>();
+            }
         }
         List<TreeNode> treeNodes = new ArrayList<>();
         for (Permission p : list){

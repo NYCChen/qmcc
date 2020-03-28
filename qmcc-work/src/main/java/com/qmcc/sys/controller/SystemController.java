@@ -139,4 +139,11 @@ public class SystemController {
 		return "system/role/roleManager";
 	}
 	/***********角色管理结束************/
+
+	/***********用户管理开始************/
+	@RequestMapping("toUserManager")
+	public String toUserManager(){
+		return "system/user/userManager";
+	}
+	/***********用户管理结束************/
 }

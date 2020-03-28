@@ -6,6 +6,11 @@ package com.qmcc.sys.common;
 public interface Constast {
 
 	/**
+	 * 用户默认密码
+	 */
+	public static String USER_DEFAULT_PWD = "123456";
+
+	/**
 	 * 状态码
 	 */
 	public static final Integer OK=200;

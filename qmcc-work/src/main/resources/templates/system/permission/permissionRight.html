@@ -214,7 +214,7 @@ layui.extend({
 					$.get("/permission/loadPermissionMaxOrderNum",function(res){
 						$("#ordernum").val(res.value);
 					});
-					selectTree.setSelectValue("");
+					selectTree.selectVal("");
 				}
 			});
 		}
@@ -232,7 +232,7 @@ layui.extend({
 					form.val("dataFrm",data);
 					//选中之前父级的权限  nodeId=data.pid;
 					dtree.dataInit("permissionTree", data.pid);
-   					dtree.setSelectValue("permissionTree");
+   					dtree.selectVal("permissionTree");
 					url="/permission/updatePermission";
 				}
 			});
