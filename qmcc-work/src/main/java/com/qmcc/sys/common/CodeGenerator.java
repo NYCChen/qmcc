@@ -94,7 +94,7 @@ public class CodeGenerator {
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
-        strategy.setTablePrefix("sys_");
+        strategy.setTablePrefix("bus_");
         mpg.setStrategy(strategy);
         mpg.execute();
     }
