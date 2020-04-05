@@ -14,7 +14,7 @@ import com.qmcc.sys.common.DataGridView;
 import com.qmcc.sys.common.ResultObj;
 import com.qmcc.sys.common.WebUtils;
 import com.qmcc.sys.domain.User;
-import com.qmcc.sys.vo.InportVo;
+import com.qmcc.bus.vo.InportVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

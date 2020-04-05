@@ -1,4 +1,4 @@
-package com.qmcc.sys.vo;
+package com.qmcc.bus.vo;
 
 import com.qmcc.bus.domain.Inport;
 import lombok.Data;

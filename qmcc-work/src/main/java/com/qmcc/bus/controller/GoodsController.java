@@ -12,7 +12,7 @@ import com.qmcc.sys.common.AppFileUtils;
 import com.qmcc.sys.common.Constast;
 import com.qmcc.sys.common.DataGridView;
 import com.qmcc.sys.common.ResultObj;
-import com.qmcc.sys.vo.GoodsVo;
+import com.qmcc.bus.vo.GoodsVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
