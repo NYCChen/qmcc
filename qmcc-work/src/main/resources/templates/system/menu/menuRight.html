@@ -240,7 +240,7 @@ layui.extend({
 					form.val("dataFrm",data);
 					//选中之前父级的菜单  nodeId=data.pid;
 					dtree.dataInit("menuTree", data.pid);
-   					dtree.setSelectValue("menuTree");
+   					dtree.selectVal("menuTree");
 					url="/menu/updateMenu";
 				}
 			});

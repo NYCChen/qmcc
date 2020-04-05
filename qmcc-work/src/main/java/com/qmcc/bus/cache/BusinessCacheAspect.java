@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.qmcc.bus.domain.Goods;
+import com.qmcc.sys.cache.CachePool;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -29,7 +30,7 @@ public class BusinessCacheAspect {
 	private Log log = LogFactory.getLog(BusinessCacheAspect.class);
 
 	// 声明一个缓存容器
-	private static Map<String, Object> CACHE_CONTAINER = new HashMap<>();
+	private static Map<String, Object> CACHE_CONTAINER = CachePool.CACHE_CONTAINER;
 
 	public static Map<String, Object> getCACHE_CONTAINER() {
 		return CACHE_CONTAINER;

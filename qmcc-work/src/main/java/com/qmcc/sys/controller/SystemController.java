@@ -147,4 +147,10 @@ public class SystemController {
 	}
 	/***********用户管理结束************/
 
+	/***********缓存管理开始************/
+	@RequestMapping("toCacheManager")
+	public String toCacheManager(){
+		return "system/cache/cacheManager";
+	}
+	/***********缓存管理结束************/
 }
