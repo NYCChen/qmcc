@@ -5,10 +5,7 @@ import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.qmcc.sys.common.Constast;
-import com.qmcc.sys.common.DataGridView;
-import com.qmcc.sys.common.PinyinUtils;
-import com.qmcc.sys.common.ResultObj;
+import com.qmcc.sys.common.*;
 import com.qmcc.sys.domain.Dept;
 import com.qmcc.sys.domain.Role;
 import com.qmcc.sys.domain.User;
@@ -232,6 +229,79 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
             return ResultObj.DISPATCH_ERROR;
+        }
+    }
+
+    /**
+     * 修改用户的密码
+     * @param oldPassword  用户的原密码
+     * @param newPwdOne     用户第一次输入的新密码
+     * @param newPwdTwo     用户第二次输入的新密码
+     * @return
+     */
+    @RequestMapping("changePassword")
+    public ResultObj changePassword(String oldPassword,String newPwdOne,String newPwdTwo){
+        //1.先通过session获得当前用户的ID
+        User user =(User) WebUtils.getSession().getAttribute("user");
+        //2.将oldPassword加盐并散列两次在和数据库中的密码进行对比
+        Integer userId = user.getId();
+        User user1 = userService.getById(userId);
+        //2.1获得该用户的盐
+        String salt = user1.getSalt();
+        //2.2通过用户输入的原密码，从数据库中查出的盐，散列次数生成新的旧密码
+        String oldPassword2 = new Md5Hash(oldPassword,salt,Constast.HASHITERATIONS).toString();
+        if (oldPassword2.equals(user1.getPwd())){
+            if (newPwdOne.equals(newPwdTwo)){
+                //3.生成新的密码
+                String newPassword = new Md5Hash(newPwdOne,salt,Constast.HASHITERATIONS).toString();
+                user1.setPwd(newPassword);
+                userService.updateById(user1);
+                return ResultObj.UPDATE_SUCCESS;
+            }else {
+                return ResultObj.UPDATE_ERROR;
+            }
+        }else {
+            return ResultObj.UPDATE_ERROR;
+        }
+    }
+
+    /**
+     * 返回当前已登录的user
+     * @return
+     */
+    @RequestMapping("getNowUser")
+    public User getNowUser(){
+        //1.获取当前session中的user
+        User user = (User) WebUtils.getSession().getAttribute("user");
+        System.out.println("*****************************************");
+        System.out.println(user);
+        return user;
+    }
+
+
+    /**
+     * 修改用户
+     * @param userVo
+     * @return
+     */
+    @RequestMapping("updateUserInfo")
+    public ResultObj updateUserInfo(UserVo userVo){
+        try {
+            //用户头像不是默认图片
+           /* if (!(userVo.getImgpath()!=null&&userVo.getImgpath().equals(Constast.DEFAULT_IMG_USER))){
+                if (userVo.getImgpath().endsWith("_temp")){
+                    String newName = AppFileUtils.renameFile(userVo.getImgpath());
+                    userVo.setImgpath(newName);
+                    //删除原先的图片
+                    String oldPath = userService.getById(userVo.getId()).getImgpath();
+                    AppFileUtils.removeFileByPath(oldPath);
+                }
+            }*/
+            userService.updateById(userVo);
+            return ResultObj.UPDATE_SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultObj.UPDATE_ERROR;
         }
     }
 }

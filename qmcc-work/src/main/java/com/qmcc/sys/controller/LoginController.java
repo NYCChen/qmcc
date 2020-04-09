@@ -1,8 +1,11 @@
 package com.qmcc.sys.controller;
 
 
+import cn.hutool.captcha.CaptchaUtil;
+import cn.hutool.captcha.LineCaptcha;
 import com.qmcc.sys.domain.Loginfo;
 import com.qmcc.sys.service.LoginfoService;
+import com.qmcc.sys.vo.UserVo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -16,6 +19,10 @@ import com.qmcc.sys.common.ActiverUser;
 import com.qmcc.sys.common.ResultObj;
 import com.qmcc.sys.common.WebUtils;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -28,18 +35,21 @@ public class LoginController {
 	@Autowired
 	private LoginfoService loginfoService;
 
-	@RequestMapping("login")
-	public ResultObj login(String loginname,String pwd) {
+	/*
+	微信小程序无验证码登录
+	 */
+	@RequestMapping("loginNoMa")
+	public ResultObj loginNoMa(UserVo userVo, HttpSession session) {
 		Subject subject = SecurityUtils.getSubject();
-		AuthenticationToken token=new UsernamePasswordToken(loginname, pwd);
+		AuthenticationToken token = new UsernamePasswordToken(userVo.getLoginname(),userVo.getPwd());
 		try {
 			subject.login(token);
-			ActiverUser activerUser=(ActiverUser) subject.getPrincipal();
+			ActiverUser activerUser = (ActiverUser) subject.getPrincipal();
 			WebUtils.getSession().setAttribute("user", activerUser.getUser());
 
 			// 记录登录日志
 			Loginfo loginfo = new Loginfo();
-			loginfo.setLoginname(activerUser.getUser().getName()+"-"+activerUser.getUser().getLoginname());
+			loginfo.setLoginname(activerUser.getUser().getName() + "-" + activerUser.getUser().getLoginname());
 			loginfo.setLoginip(WebUtils.getRequest().getRemoteAddr());
 			loginfo.setLogintime(new Date());
 			loginfoService.save(loginfo);
@@ -48,6 +58,58 @@ public class LoginController {
 		} catch (AuthenticationException e) {
 			e.printStackTrace();
 			return ResultObj.LOGIN_ERROR_PASS;
+		}
+
+	}
+
+	@RequestMapping("login")
+	public ResultObj login(UserVo userVo, String code, HttpSession session) {
+		// 获取存储在session中的图片验证码的数据
+		String stringCode = (String) session.getAttribute("code");
+		if (code != null && code.equals(stringCode)) {
+			Subject subject = SecurityUtils.getSubject();
+			AuthenticationToken token = new UsernamePasswordToken(userVo.getLoginname(),userVo.getPwd());
+			try {
+				subject.login(token);
+				ActiverUser activerUser = (ActiverUser) subject.getPrincipal();
+				WebUtils.getSession().setAttribute("user", activerUser.getUser());
+
+				// 记录登录日志
+				Loginfo loginfo = new Loginfo();
+				loginfo.setLoginname(activerUser.getUser().getName() + "-" + activerUser.getUser().getLoginname());
+				loginfo.setLoginip(WebUtils.getRequest().getRemoteAddr());
+				loginfo.setLogintime(new Date());
+				loginfoService.save(loginfo);
+
+				return ResultObj.LOGIN_SUCCESS;
+			} catch (AuthenticationException e) {
+				e.printStackTrace();
+				return ResultObj.LOGIN_ERROR_PASS;
+			}
+		}else {
+			return ResultObj.LOGIN_ERROR_CODE;
+		}
+
+	}
+
+	/**
+	 * 得到登陆验证码
+	 * @param response
+	 * @param session
+	 * @throws IOException
+	 */
+	@RequestMapping("getCode")
+	public void getCode(HttpServletResponse response, HttpSession session) throws IOException {
+		//定义图形验证码的长和宽
+		LineCaptcha lineCaptcha = CaptchaUtil.createLineCaptcha(116, 36,4,5);
+		//System.out.println(lineCaptcha.getCode());
+		session.setAttribute("code",lineCaptcha.getCode());
+		try {
+			ServletOutputStream outputStream = response.getOutputStream();
+			lineCaptcha.write(outputStream);
+			outputStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

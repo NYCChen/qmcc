@@ -121,7 +121,7 @@ public class GoodsController {
     }
 
     /**
-     * 加载所有可用的供应商
+     * 加载所有可用的商品
      */
     @RequestMapping("loadAllGoodsForSelect")
     public DataGridView loadAllGoodsForSelect() {

@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qmcc.bus.domain.Customer;
 import com.qmcc.bus.service.CustomerService;
 import com.qmcc.bus.vo.CustomerVo;
+import com.qmcc.sys.common.Constast;
 import com.qmcc.sys.common.DataGridView;
 import com.qmcc.sys.common.ResultObj;
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("customer")
@@ -98,5 +100,16 @@ public class CustomerController {
         }
     }
 
+    /**
+     * 加载所有客户的下拉列表
+     * @return
+     */
+    @RequestMapping("loadAllCustomerForSelect")
+    public DataGridView loadAllCustomerForSelect(){
+        QueryWrapper<Customer> queryWrapper = new QueryWrapper<Customer>();
+        queryWrapper.eq("available", Constast.AVAILABLE_TRUE);
+        List<Customer> list = customerService.list(queryWrapper);
+        return new DataGridView(list);
+    }
 }
 

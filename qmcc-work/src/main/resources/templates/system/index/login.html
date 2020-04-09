@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loginHtml">
+<html class="loginHtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
 	<title>登录QMCC后台管理系统</title>
@@ -17,17 +17,18 @@
 	<form class="layui-form">
 		<div class="login_face"><img src="/resources/images/face.jpg" class="userAvatar"></div>
 		<div class="layui-form-item input-item">
-			<label for="userName">用户名</label>
-			<input type="text" placeholder="请输入用户名" autocomplete="off" name="loginname" class="layui-input" lay-verify="required">
+			<label for="loginname">用户名</label>
+			<input type="text" placeholder="请输入用户名" autocomplete="off" id="loginname" name="loginname" class="layui-input" lay-verify="required">
 		</div>
 		<div class="layui-form-item input-item">
-			<label for="password">密码</label>
-			<input type="password" placeholder="请输入密码" autocomplete="off" name="pwd" class="layui-input" lay-verify="required">
+			<label for="pwd">密码</label>
+			<input type="password" placeholder="请输入密码" autocomplete="off" id="pwd" name="pwd" class="layui-input" lay-verify="required">
 		</div>
 		<div class="layui-form-item input-item" id="imgCode">
 			<label for="code">验证码</label>
-			<input type="text" placeholder="请输入验证码" autocomplete="off" id="code" class="layui-input">
-			<img src="/resources/images/code.jpg">
+			<input type="text" placeholder="请输入验证码" autocomplete="off" id="code" name="code" class="layui-input">
+			<img id="img" th:src="@{/login/getCode}" onclick="this.src=this.src+'?'">
+		</div>
 		</div>
 		<div class="layui-form-item">
 			<button class="layui-btn layui-block" lay-filter="login" lay-submit>登录</button>
@@ -53,12 +54,12 @@
 	    	var btn =  $(this);
 	    	//设置登录按钮  为不可点击
 	    	btn.text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
-	       	$.post("/login/login",data.field,function(rs){
+	       	$.post("/login/loginNoMa",data.field,function(rs){
 	       		//设置登录按钮 恢复可点击   在前端防止 重复点击
 	       		btn.text("登录").attr("disabled",false).removeClass("layui-disabled");
 	       		layer.msg(rs.msg);
 	       		if(rs.code != 200){
-	       			layer.msg(rs.msg);
+					layer.msg(rs.msg);
 	       		}else{
 	       			//跳转到templates/system/index/index.html页面
 	       			layer.msg(rs.msg);

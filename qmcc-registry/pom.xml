@@ -12,6 +12,10 @@
     <groupId>com.qmcc.registry</groupId>
     <artifactId>qmcc-registry</artifactId>
 
+    <properties>
+        <spring-cloud.version>Finchley.SR2</spring-cloud.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

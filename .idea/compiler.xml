@@ -7,17 +7,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="qmcc-common" />
-        <module name="qmcc-item-interface" />
-        <module name="qmcc-work" />
         <module name="qmcc-gateway" />
         <module name="qmcc-registry" />
-        <module name="qmcc" />
-        <module name="qmcc-item-service" />
+        <module name="qmcc-work" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="0520ERP" target="1.8" />
+      <module name="qmcc-common" target="1.8" />
+      <module name="qmcc-item" target="1.8" />
+      <module name="qmcc-item-interface" target="1.8" />
+      <module name="qmcc-item-service" target="1.8" />
       <module name="qmcc-work2 (1)" target="1.8" />
       <module name="qmcc-work2 (2)" target="1.8" />
       <module name="qmcc.item.interface" target="1.5" />

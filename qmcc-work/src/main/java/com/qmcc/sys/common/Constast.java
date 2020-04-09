@@ -44,4 +44,14 @@ public interface Constast {
 	 */
 	public static final String IMAGES_DEFAULTGOODSIMG_PNG = "images/defaultgoodsimg.png";
 
+
+	/**
+	 * hash散列次数
+	 */
+	public static final Integer HASHITERATIONS = 2;
+	/**
+	 * 用户默认图片
+	 */
+	public static final String DEFAULT_IMG_USER="/images/defaultUserTitle.jpg";
+
 }

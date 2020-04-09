@@ -1,5 +1,6 @@
 package com.qmcc.sys.controller;
 
+import com.qmcc.sys.common.WebUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,6 +23,37 @@ public class SystemController {
 	public String index() {
 		return "system/index/index";
 	}
+
+	/**
+	 * 退出然后跳转到登陆页面
+	 * @return
+	 */
+	@RequestMapping("toSignOut")
+	public String toSignOut(){
+		//销毁session
+		WebUtils.getSession().removeAttribute("user");
+		return "system/index/login";
+	}
+
+	/**
+	 * 跳转到个人资料页面
+	 * @return
+	 */
+	@RequestMapping("toUserInfo")
+	public String toUserInfo(){
+		return "system/user/userInfo";
+	}
+
+	/**
+	 * 跳转到修改密码页面
+	 * @return
+	 */
+	@RequestMapping("toChangePassword")
+	public String toChangePassword(){
+		return "system/user/changePassword";
+	}
+
+
 
 	/**
 	 * 跳转到工作台

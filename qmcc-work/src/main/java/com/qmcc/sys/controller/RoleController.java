@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qmcc.sys.common.*;
 import com.qmcc.sys.domain.Permission;
 import com.qmcc.sys.domain.Role;
-import com.qmcc.sys.domain.User;
 import com.qmcc.sys.service.PermissionService;
 import com.qmcc.sys.service.RoleService;
 import com.qmcc.sys.vo.RoleVo;
@@ -16,11 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
-import sun.reflect.generics.tree.Tree;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 

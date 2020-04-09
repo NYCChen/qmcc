@@ -9,6 +9,9 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/qmcc-item/pom.xml" />
+        <option value="$PROJECT_DIR$/qmcc-item/qmcc-item-interface/pom.xml" />
+        <option value="$PROJECT_DIR$/qmcc-item/qmcc-item-service/pom.xml" />
         <option value="$PROJECT_DIR$/qmcc-work2/pom.xml" />
       </set>
     </option>
