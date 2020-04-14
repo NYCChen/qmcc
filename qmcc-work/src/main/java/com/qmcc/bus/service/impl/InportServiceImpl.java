@@ -36,7 +36,7 @@ public class InportServiceImpl extends ServiceImpl<InportMapper, Inport> impleme
         //根据进货ID查询进货
         Inport inport = this.baseMapper.selectById(entity.getId());
         //根据商品ID查询商品信息
-        Goods goods = this.goodsMapper.selectById(entity.getGoodsid());
+        Goods goods = this.goodsMapper.selectById(inport.getGoodsid());
         //库存的算法  当前库存-进货单修改之前的数量+修改之后的数量
         goods.setNumber(goods.getNumber()-inport.getNumber()+entity.getNumber());
         this.goodsMapper.updateById(goods);

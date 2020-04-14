@@ -25,4 +25,9 @@ public class DataGridView {
     public DataGridView(Object data) {
         this.data = data;
     }
+
+    public DataGridView(String msg, Object data) {
+        this.msg = msg;
+        this.data = data;
+    }
 }

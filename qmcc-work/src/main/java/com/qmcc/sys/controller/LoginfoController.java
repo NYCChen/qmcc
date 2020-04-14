@@ -9,6 +9,7 @@ import com.qmcc.sys.common.ResultObj;
 import com.qmcc.sys.domain.Loginfo;
 import com.qmcc.sys.service.LoginfoService;
 import com.qmcc.sys.vo.LoginfoVo;
+import com.qmcc.sys.vo.LoginfoWeVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * <p>
@@ -49,6 +51,20 @@ public class LoginfoController {
         this.loginfoService.page(page, queryWrapper);
 
         return new DataGridView(page.getTotal(), page.getRecords());
+    }
+
+    /**
+     * 微信小程序全查询
+     */
+    @RequestMapping("weloadAllLoginfo")
+    public DataGridView we1loadAllLoginfo(LoginfoVo loginfoVo){
+        List<Loginfo> loginfoList = new ArrayList<>();
+        QueryWrapper<Loginfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("logintime");
+        loginfoList = this.loginfoService.list(queryWrapper);
+
+
+        return new DataGridView(loginfoList);
     }
 
     /**

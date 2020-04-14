@@ -12,7 +12,7 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/beshe01?useUnicode=true&characterEncoding=utf8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/beshe01?useUnicode=true&characterEncoding=utf8&useSSL=false&useJDBCCompliantTimezoneShift=true
       username: root
       password: nyc123
       max-active: 20
@@ -59,6 +59,10 @@ shiro:
   - /sys/toLogin*
   - /login/login*
   - /login/getCode
+  - /loginfo/**
+  - /inport/**
+  - /provider/**
+  - /goods/**
   - /resources/**
   login-url: /index.html
   log-out-url: /login/logout*

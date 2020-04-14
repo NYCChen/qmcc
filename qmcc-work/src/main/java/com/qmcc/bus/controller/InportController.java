@@ -1,6 +1,8 @@
 package com.qmcc.bus.controller;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -13,16 +15,17 @@ import com.qmcc.bus.service.ProviderService;
 import com.qmcc.sys.common.DataGridView;
 import com.qmcc.sys.common.ResultObj;
 import com.qmcc.sys.common.WebUtils;
+import com.qmcc.sys.domain.Loginfo;
 import com.qmcc.sys.domain.User;
 import com.qmcc.bus.vo.InportVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author nyc
@@ -69,6 +72,29 @@ public class InportController {
         }
         return new DataGridView(page.getTotal(), records);
     }
+    /**
+     * 微信小程序查询
+     */
+    @RequestMapping("weloadAllInport")
+    public DataGridView weloadAllInport(InportVo inportVo) {
+
+        List<Inport> inportList = new ArrayList<>();
+        QueryWrapper<Inport> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("inporttime");
+        inportList = this.inportService.list(queryWrapper);
+        for (Inport inport : inportList) {
+            Provider provider = this.providerService.getById(inport.getProviderid());
+            if(null!=provider) {
+                inport.setProvidername(provider.getProvidername());
+            }
+            Goods goods = this.goodsService.getById(inport.getGoodsid());
+            if(null!=goods) {
+                inport.setGoodsname(goods.getGoodsname());
+                inport.setSize(goods.getSize());
+            }
+        }
+        return new DataGridView(inportList);
+    }
 
     /**
      * 添加
@@ -78,7 +104,7 @@ public class InportController {
         try {
             inportVo.setInporttime(new Date());
             User user=(User) WebUtils.getSession().getAttribute("user");
-            inportVo.setOperateperson(user.getName());
+            //inportVo.setOperateperson(user.getName());
             this.inportService.save(inportVo);
             return ResultObj.ADD_SUCCESS;
         } catch (Exception e) {
@@ -91,14 +117,35 @@ public class InportController {
      * 修改
      */
     @RequestMapping("updateInport")
-    public ResultObj updateInport(InportVo inportVo) {
+    public ResultObj updateInport(Inport inport) {
         try {
-            this.inportService.updateById(inportVo);
+            this.inportService.updateById(inport);
             return ResultObj.UPDATE_SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
             return ResultObj.UPDATE_ERROR;
         }
+    }
+
+    /**
+     * 微信小程序根据Id查询一个进货信息
+     */
+    @RequestMapping("weloadOneInport")
+    public Map<String, Object> weloadOneInport(Integer id) {
+
+        Map<String, Object> inportMap = new HashMap<>();
+        Inport inport  = this.inportService.getById(id);
+        Provider provider = this.providerService.getById(inport.getProviderid());
+        if(null!=provider) {
+            inport.setProvidername(provider.getProvidername());
+        }
+        Goods goods = this.goodsService.getById(inport.getGoodsid());
+        if(null!=goods) {
+            inport.setGoodsname(goods.getGoodsname());
+            inport.setSize(goods.getSize());
+        }
+        inportMap.put("inport", inport);
+        return inportMap;
     }
     /**
      * 删除
