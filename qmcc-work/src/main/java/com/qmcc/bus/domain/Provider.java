@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author nyc
@@ -29,25 +29,10 @@ public class Provider implements Serializable {
 
     private String providername;
 
-    private String zip;
-
     private String address;
-
-    private String telephone;
 
     private String connectionperson;
 
-    private String phone;
-
-    private String bank;
-
-    private String account;
-
-    private String email;
-
-    private String fax;
-
     private Integer available;
-
 
 }

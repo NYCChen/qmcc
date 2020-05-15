@@ -120,12 +120,6 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">用户地址</label>
-			<div class="layui-input-block">
-				<input type="text" name="address"  autocomplete="off" placeholder="请输入用户用地址" class="layui-input">
-			</div>
-		</div>
-		<div class="layui-form-item">
 			<label class="layui-form-label">用户备注</label>
 			<div class="layui-input-block">
 				<textarea class="layui-textarea" name="remark" id="content"></textarea>
@@ -195,14 +189,12 @@
 					}}
 				,{field:'deptname', title:'部门名称',align:'center',width:'120'}
 				,{field:'leadername', title:'直属领导',align:'center',width:'100'}
-				,{field:'address', title:'用户地址',align:'center',width:'150'}
 				,{field:'remark', title:'用户备注',align:'center',width:'150'}
 				,{field:'hiredate', title:'入职时间',align:'center',width:'180'}
 				,{field:'available', title:'是否可用',align:'center',width:'100',templet:function(d){
 						return d.available==1?'<font color=blue>可用</font>':'<font color=red>不可用</font>';
 					}}
 				,{field:'ordernum', title:'排序码',align:'center',width:'100'}
-				,{field:'imgpath', title:'用户头像',align:'center',width:'200'}
 				,{fixed: 'right', title:'操作', toolbar: '#userRowBar',align:'center',width:'400'}
 			] ]
 			,done: function(res, curr, count){ //处理删除某一页最后一条数据的BUG

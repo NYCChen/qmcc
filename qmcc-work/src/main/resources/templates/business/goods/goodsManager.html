@@ -34,20 +34,9 @@
 		        <input type="text" name="goodsname"  autocomplete="off" class="layui-input">
 		      </div>
 		    </div>
-		    <div class="layui-inline">
-		      <label class="layui-form-label">生产批号</label>
-		      <div class="layui-input-inline">
-		        <input type="text" name="productcode"  autocomplete="off" class="layui-input">
-		      </div>
-		    </div>
 		  </div>
 		  <div class="layui-form-item">
-		   <div class="layui-inline">
-		       <label class="layui-form-label">批准文号</label>
-		       <div class="layui-input-inline">
-		          <input type="text" name="promitcode"  autocomplete="off" class="layui-input">
-		      </div>
-		    </div>
+
 		    <div class="layui-inline">
 		      <label class="layui-form-label">商品描述</label>
 		      <div class="layui-input-inline">
@@ -60,13 +49,15 @@
 		        <input type="text" name="size"  autocomplete="off" class="layui-input">
 		      </div>
 		    </div>
+			  <!--<div class="layui-form-item">-->
+			  <div class="layui-inline">
+				  <div class="layui-input-block" style="text-align: center;">
+					  <button type="button" class="layui-btn" lay-submit="" lay-filter="doSearch"><span class="layui-icon layui-icon-search"></span>查询</button>
+					  <button type="reset" class="layui-btn layui-btn-warm"><span class="layui-icon layui-icon-refresh-1"></span>重置</button>
+				  </div>
+			  </div>
 		  </div>
-		  <div class="layui-form-item">
-		  	 <div class="layui-input-block" style="text-align: center;">
-		       	<button type="button" class="layui-btn" lay-submit="" lay-filter="doSearch"><span class="layui-icon layui-icon-search"></span>查询</button>
-      			<button type="reset" class="layui-btn layui-btn-warm"><span class="layui-icon layui-icon-refresh-1"></span>重置</button>
-		      </div>
-		  </div>
+
 	</form>
 </blockquote>
 <!-- 查询条件结束-->
@@ -142,22 +133,10 @@
 				   </div>
 				</div>
 				<div class="layui-inline">
-				    <label class="layui-form-label">生产批号</label>
-					<div class="layui-input-inline">
-						<input type="text" class="layui-input" name="productcode" lay-verify="" placeholder="请输入商品生产批号">
-				   </div>
-				</div>
-				<div class="layui-inline">
-				    <label class="layui-form-label">批准文号</label>
-					<div class="layui-input-inline">
-						<input type="text" class="layui-input" name="promitcode" lay-verify="" placeholder="请输入商品批准文号">
-				   </div>
-				</div>
-				<div class="layui-inline">
-				    <label class="layui-form-label">销售价格</label>
+					<label class="layui-form-label">销售价格</label>
 					<div class="layui-input-inline">
 						<input type="text" class="layui-input" name="price" lay-verify="" placeholder="请输入商品销售价格">
-				   </div>
+					</div>
 				</div>
 				<div class="layui-inline">
 				    <label class="layui-form-label">库存量</label>
@@ -207,7 +186,7 @@ layui.use(['jquery','form','table','layer','upload'],function(){
 		    ,url:'/goods/loadAllGoods'
 		    ,toolbar: '#goodsToolBar' //开启头部工具栏，并为其绑定左侧模板
 		    ,title: '商品数据表'
-			 ,height:'full-200'
+			 ,height:'full-150'
 		    ,page: true
 		    ,cols: [ [
 		      {field:'id', title:'ID',align:'center' ,width:'80'}
@@ -216,8 +195,6 @@ layui.use(['jquery','form','table','layer','upload'],function(){
 		      ,{field:'produceplace', title:'产地',align:'center',width:'120'}
 		      ,{field:'size', title:'商品规格',align:'center',width:'120'}
 		      ,{field:'goodspackage', title:'商品包装',align:'center',width:'120'}
-		      ,{field:'productcode', title:'生产批号',align:'center',width:'100'}
-		      ,{field:'promitcode', title:'批准文号',align:'center',width:'100'}
 		      ,{field:'description', title:'商品描述',align:'center',width:'120'}
 		      ,{field:'price', title:'商品价格',align:'center',width:'100'}
 		      ,{field:'number', title:'库存量',align:'center',width:'100'}

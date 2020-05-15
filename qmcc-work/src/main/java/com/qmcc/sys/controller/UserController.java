@@ -46,7 +46,6 @@ public class UserController {
         IPage<User> page=new Page<>(userVo.getPage(), userVo.getLimit());
         QueryWrapper<User> queryWrapper=new QueryWrapper<>();
         queryWrapper.eq(StringUtils.isNotBlank(userVo.getName()), "loginname", userVo.getName()).or().eq(StringUtils.isNotBlank(userVo.getName()), "name", userVo.getName());
-        queryWrapper.eq(StringUtils.isNotBlank(userVo.getAddress()), "address", userVo.getAddress());
         queryWrapper.eq("type", Constast.USER_TYPE_NORMAL);//查询系统用户
         queryWrapper.eq(userVo.getDeptid()!=null, "deptid",userVo.getDeptid());
         this.userService.page(page, queryWrapper);

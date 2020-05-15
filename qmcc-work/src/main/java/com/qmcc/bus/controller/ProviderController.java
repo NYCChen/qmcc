@@ -45,7 +45,6 @@ public class ProviderController {
         QueryWrapper<Provider> queryWrapper = new QueryWrapper<>();
         queryWrapper.like(StringUtils.isNotBlank(providerVo.getProvidername()), "providername",
                 providerVo.getProvidername());
-        queryWrapper.like(StringUtils.isNotBlank(providerVo.getPhone()), "phone", providerVo.getPhone());
         queryWrapper.like(StringUtils.isNotBlank(providerVo.getConnectionperson()), "connectionperson",
                 providerVo.getConnectionperson());
         this.providerService.page(page, queryWrapper);

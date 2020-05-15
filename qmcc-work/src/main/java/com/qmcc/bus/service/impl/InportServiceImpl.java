@@ -31,6 +31,11 @@ public class InportServiceImpl extends ServiceImpl<InportMapper, Inport> impleme
         return super.save(entity);
     }
 
+    /**
+     *  商品进货的修改
+     *
+     *  其中修改进货后的库存算法为：当前库存-进货单修改之前的数量+修改之后的数量
+     */
     @Override
     public boolean updateById(Inport entity) {
         //根据进货ID查询进货

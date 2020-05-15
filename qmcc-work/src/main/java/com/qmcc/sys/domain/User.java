@@ -27,7 +27,6 @@ public class User implements Serializable {
 
     private String loginname;
 
-    private String address;
 
     private Integer sex;
 
@@ -50,10 +49,6 @@ public class User implements Serializable {
      */
     private Integer type;
 
-    /**
-     * 头像地址
-     */
-    private String imgpath;
 
     private String salt;
 

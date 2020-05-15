@@ -30,24 +30,24 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">客户电话</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="phone"  autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
                 <label class="layui-form-label">联系人</label>
                 <div class="layui-input-inline">
                     <input type="text" name="connectionperson"  autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <div class="layui-inline">
+                <div class="layui-input-block" style="text-align: center;">
+                    <button type="button" class="layui-btn" lay-submit="" lay-filter="doSearch"><span class="layui-icon layui-icon-search"></span>查询</button>
+                    <button type="reset" class="layui-btn layui-btn-warm"><span class="layui-icon layui-icon-refresh-1"></span>重置</button>
+                </div>
+            </div>
         </div>
-        <div class="layui-form-item">
+        <!--<div class="layui-form-item">
             <div class="layui-input-block" style="text-align: center;">
                 <button type="button" class="layui-btn" lay-submit="" lay-filter="doSearch"><span class="layui-icon layui-icon-search"></span>查询</button>
                 <button type="reset" class="layui-btn layui-btn-warm"><span class="layui-icon layui-icon-refresh-1"></span>重置</button>
             </div>
-        </div>
+        </div>-->
     </form>
 </blockquote>
 <!-- 查询条件结束-->
@@ -79,25 +79,13 @@
                     <input type="text" name="customername" lay-verify="required" autocomplete="off" placeholder="请输入客户名称" class="layui-input">
                 </div>
             </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">公司电话</label>
-                <div class="layui-input-inline">
-                    <input type="hidden" name="id">
-                    <input type="text" name="telephone" lay-verify="required" autocomplete="off" placeholder="请输入公司电话" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">邮编</label>
-                <div class="layui-input-inline">
-                    <input type="hidden" name="id">
-                    <input type="text" name="zip"  autocomplete="off" placeholder="请输入客户邮编" class="layui-input">
-                </div>
-            </div>
+
+
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">公司地址</label>
+            <label class="layui-form-label">客户地址</label>
             <div class="layui-input-block">
-                <input type="text" name="address" autocomplete="off" placeholder="请输入公司地址" class="layui-input">
+                <input type="text" name="address" autocomplete="off" placeholder="请输入客户地址" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -108,44 +96,9 @@
                     <input type="text" name="connectionperson" lay-verify="required" autocomplete="off" placeholder="请输入联系人" class="layui-input">
                 </div>
             </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">联系人电话</label>
-                <div class="layui-input-inline">
-                    <input type="hidden" name="id">
-                    <input type="text" name="phone" lay-verify="required" autocomplete="off" placeholder="请输入联系人电话" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">邮箱</label>
-                <div class="layui-input-inline">
-                    <input type="hidden" name="id">
-                    <input type="text" name="email" lay-verify="required" autocomplete="off" placeholder="请输入客户邮箱" class="layui-input">
-                </div>
-            </div>
+
         </div>
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">开户银行</label>
-                <div class="layui-input-inline">
-                    <input type="hidden" name="id">
-                    <input type="text" name="bank" lay-verify="required" autocomplete="off" placeholder="请输入开户银行" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">帐号</label>
-                <div class="layui-input-inline">
-                    <input type="hidden" name="id">
-                    <input type="text" name="account" lay-verify="required" autocomplete="off" placeholder="请输入客户帐号" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">传真</label>
-                <div class="layui-input-inline">
-                    <input type="hidden" name="id">
-                    <input type="text" name="fax" lay-verify="required" autocomplete="off" placeholder="请输入客户传真" class="layui-input">
-                </div>
-            </div>
-        </div>
+
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">是否可用</label>
@@ -188,15 +141,8 @@
                 {type:'checkbox',align:'center'}
                 ,{field:'id', title:'ID',align:'center' ,width:'80'}
                 ,{field:'customername', title:'客户名称',align:'center',width:'120'}
-                ,{field:'zip', title:'邮编',align:'center',width:'120'}
                 ,{field:'address', title:'客户地址',align:'center',width:'150'}
-                ,{field:'telephone', title:'客户电话',align:'center',width:'150'}
                 ,{field:'connectionperson', title:'联系人',align:'center',width:'120'}
-                ,{field:'phone', title:'联系人电话',align:'center',width:'150'}
-                ,{field:'bank', title:'开户行',align:'center',width:'120'}
-                ,{field:'account', title:'账号',align:'center',width:'180'}
-                ,{field:'email', title:'邮箱',align:'center',width:'150'}
-                ,{field:'fax', title:'传真',align:'center',width:'120'}
                 ,{field:'available', title:'是否可用',align:'center',width:'120',templet:function(d){
                         return d.available==1?'<font color=blue>可用</font>':'<font color=red>不可用</font>';
                     }}

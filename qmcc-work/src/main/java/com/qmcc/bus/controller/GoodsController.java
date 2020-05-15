@@ -47,8 +47,6 @@ public class GoodsController {
         QueryWrapper<Goods> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(goodsVo.getProviderid()!=null&&goodsVo.getProviderid()!=0,"providerid",goodsVo.getProviderid());
         queryWrapper.like(StringUtils.isNotBlank(goodsVo.getGoodsname()), "goodsname", goodsVo.getGoodsname());
-        queryWrapper.like(StringUtils.isNotBlank(goodsVo.getProductcode()), "productcode", goodsVo.getProductcode());
-        queryWrapper.like(StringUtils.isNotBlank(goodsVo.getPromitcode()), "promitcode", goodsVo.getPromitcode());
         queryWrapper.like(StringUtils.isNotBlank(goodsVo.getDescription()), "description", goodsVo.getDescription());
         queryWrapper.like(StringUtils.isNotBlank(goodsVo.getSize()), "size", goodsVo.getSize());
         this.goodsService.page(page, queryWrapper);
@@ -136,6 +134,25 @@ public class GoodsController {
         }
         return new DataGridView(list);
     }
+
+    /**
+     * 仅加载加载所有可生产的所有商品
+     */
+    @RequestMapping("loadAllGoodsForTheCompanySelect")
+    public DataGridView loadAllGoodsForTheCompanySelect() {
+        QueryWrapper<Goods> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("available", Constast.AVAILABLE_TRUE);
+        queryWrapper.eq("providerid", 1);
+        List<Goods> list = this.goodsService.list(queryWrapper);
+        /*for (Goods goods : list) {
+            Provider provider = this.providerService.getById(goods.getProviderid());
+            if(null!=provider) {
+                goods.setProvidername(provider.getProvidername());
+            }
+        }*/
+        return new DataGridView(list);
+    }
+
 
     /**
      *根据供应商ID查询商品信息
