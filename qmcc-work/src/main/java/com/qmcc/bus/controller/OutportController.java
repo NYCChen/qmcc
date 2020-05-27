@@ -46,11 +46,11 @@ public class OutportController {
         QueryWrapper<Outport> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(outportVo.getProviderid()!=null&&outportVo.getProviderid()!=0,"providerid",outportVo.getProviderid());
         queryWrapper.eq(outportVo.getGoodsid()!=null&&outportVo.getGoodsid()!=0,"goodsid",outportVo.getGoodsid());
-        queryWrapper.ge(outportVo.getStartTime()!=null, "outporttime", outportVo.getStartTime());
-        queryWrapper.le(outportVo.getEndTime()!=null, "outporttime", outportVo.getEndTime());
+        queryWrapper.ge(outportVo.getStartTime()!=null, "outputtime", outportVo.getStartTime());
+        queryWrapper.le(outportVo.getEndTime()!=null, "outputtime", outportVo.getEndTime());
         queryWrapper.like(StringUtils.isNotBlank(outportVo.getOperateperson()), "operateperson", outportVo.getOperateperson());
         queryWrapper.like(StringUtils.isNotBlank(outportVo.getRemark()), "remark", outportVo.getRemark());
-        queryWrapper.orderByDesc("outporttime");
+        queryWrapper.orderByDesc("outputtime");
         this.outportService.page(page, queryWrapper);
         List<Outport> records = page.getRecords();
         for (Outport outport : records) {

@@ -93,15 +93,35 @@ public class ProduceController {
     public ResultObj addProduce(ProduceVo produceVo) {
         try {
             produceVo.setProducetime(new Date());
-//            produceVo.setP
-            User user=(User) WebUtils.getSession().getAttribute("user");
-            produceVo.setProduceperson(user.getName());
+            //User user=(User) WebUtils.getSession().getAttribute("user");
+            //produceVo.setProduceperson(user.getName());
             this.produceService.save(produceVo);
             return ResultObj.ADD_SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
             return ResultObj.ADD_ERROR;
         }
+    }
+
+    /**
+     * 微信小程序根据Id查询一个生产信息
+     */
+    @RequestMapping("weloadOneProduce")
+    public Map<String, Object> weloadOneProduce(Integer id) {
+
+        Map<String, Object> inportMap = new HashMap<>();
+        Produce produce  = this.produceService.getById(id);
+        /*Provider provider = this.providerService.getById(inport.getProviderid());
+        if(null!=provider) {
+            inport.setProvidername(provider.getProvidername());
+        }*/
+        Goods goods = this.goodsService.getById(produce.getGoodsid());
+        if(null!=goods) {
+            produce.setGoodsname(goods.getGoodsname());
+            produce.setSize(goods.getSize());
+        }
+        inportMap.put("produce", produce);
+        return inportMap;
     }
 
     /**
@@ -118,26 +138,6 @@ public class ProduceController {
         }
     }
 
-    /**
-     * 微信小程序根据Id查询一个进货信息
-     */
-    /*@RequestMapping("weloadOneProduce")
-    public Map<String, Object> weloadOneProduce(Integer id) {
-
-        Map<String, Object> produceMap = new HashMap<>();
-        Produce produce  = this.produceService.getById(id);
-        Provider provider = this.providerService.getById(produce.getProviderid());
-        if(null!=provider) {
-            produce.setProvidername(provider.getProvidername());
-        }
-        Goods goods = this.goodsService.getById(produce.getGoodsid());
-        if(null!=goods) {
-            produce.setGoodsname(goods.getGoodsname());
-            produce.setSize(goods.getSize());
-        }
-        produceMap.put("produce", produce);
-        return produceMap;
-    }*/
 
     /**
      * 删除

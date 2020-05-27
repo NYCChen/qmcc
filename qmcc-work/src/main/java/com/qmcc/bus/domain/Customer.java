@@ -30,8 +30,6 @@ public class Customer implements Serializable {
 
     private String connectionperson;
 
-    private String phone;
-
     private Integer available;
 
 

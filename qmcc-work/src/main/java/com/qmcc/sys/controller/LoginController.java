@@ -24,6 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 登录前端控制器
@@ -39,9 +41,11 @@ public class LoginController {
 	微信小程序无验证码登录
 	 */
 	@RequestMapping("loginNoMa")
-	public ResultObj loginNoMa(UserVo userVo, HttpSession session) {
+	public Map<String, Object> loginNoMa(UserVo userVo, HttpSession session) {
 		Subject subject = SecurityUtils.getSubject();
 		AuthenticationToken token = new UsernamePasswordToken(userVo.getLoginname(),userVo.getPwd());
+
+		Map<String, Object> loginMap = new HashMap<>();
 		try {
 			subject.login(token);
 			ActiverUser activerUser = (ActiverUser) subject.getPrincipal();
@@ -54,10 +58,20 @@ public class LoginController {
 			loginfo.setLogintime(new Date());
 			loginfoService.save(loginfo);
 
-			return ResultObj.LOGIN_SUCCESS;
+			//return ResultObj.LOGIN_SUCCESS;
+
+			loginMap.put("code",200);
+			loginMap.put("msg","登陆成功");
+			loginMap.put("username",activerUser.getUser().getName());
+			return loginMap;
 		} catch (AuthenticationException e) {
 			e.printStackTrace();
-			return ResultObj.LOGIN_ERROR_PASS;
+			//return ResultObj.LOGIN_ERROR_PASS;
+
+			loginMap.put("code",-1);
+			loginMap.put("msg","登陆失败,用户名或密码不正确");
+			//loginMap.put("username",activerUser.getUser().getName());
+			return loginMap;
 		}
 
 	}

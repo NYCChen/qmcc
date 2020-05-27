@@ -45,8 +45,7 @@ public class OutportServiceImpl extends ServiceImpl<OutportMapper, Outport> impl
         User user=(User) WebUtils.getSession().getAttribute("user");
         entity.setOperateperson(user.getName());
         entity.setOutportprice(inport.getInportprice());
-        entity.setOutporttime(new Date());
-        entity.setPaytype(inport.getPaytype());
+        entity.setOutputtime(new Date());
         entity.setProviderid(inport.getProviderid());
         entity.setRemark(remark);
         this.getBaseMapper().insert(entity);

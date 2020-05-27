@@ -45,7 +45,7 @@ public class ProduceServiceImpl extends ServiceImpl<ProduceMapper, Produce> impl
         //库存的算法  当前库存-生产修改之前的数量+修改之后的数量
         goods.setNumber(goods.getNumber()-produce.getNumber()+entity.getNumber());
         this.goodsMapper.updateById(goods);
-        //更新进货单
+        //更新生产
         return super.updateById(entity);
     }
 

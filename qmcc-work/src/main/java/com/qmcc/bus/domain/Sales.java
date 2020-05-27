@@ -35,8 +35,6 @@ public class Sales implements Serializable {
 
     private Integer customerid;
 
-    private String paytype;
-
     private Date salestime;
 
     private String operateperson;

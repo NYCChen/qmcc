@@ -31,8 +31,6 @@ public class Inport implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    private String paytype;
-
     private Date inporttime;
 
     private String operateperson;

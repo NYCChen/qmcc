@@ -3,7 +3,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://http://8.129.70.198:20000/eureka
+      defaultZone: http://8.129.70.198:20000/eureka
     registry-fetch-interval-seconds: 5
 #配置数据源的属性
 spring:
@@ -12,7 +12,7 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/beshe01?useUnicode=true&characterEncoding=utf8&useSSL=false&useJDBCCompliantTimezoneShift=true
+      url: jdbc:mysql://8.129.70.198:3306/beshe01?useUnicode=true&characterEncoding=utf8&useSSL=false&useJDBCCompliantTimezoneShift=true
       username: root
       password: nyc123
       max-active: 20
@@ -57,12 +57,16 @@ shiro:
   anon-urls:
   - /index.html*
   - /sys/toLogin*
-  - /login/login*
-  - /login/getCode
-  - /loginfo/**
+  #- /login/login*
+  #- /login/getCode
+  -  /login/**
+  - /sales/**
+ # - /loginfo/**
   - /inport/**
+  - /customer/**
   - /provider/**
   - /goods/**
+  - /produce/**
   - /resources/**
   login-url: /index.html
   log-out-url: /login/logout*

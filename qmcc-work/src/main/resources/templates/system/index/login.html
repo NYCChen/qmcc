@@ -54,7 +54,7 @@
 	    	var btn =  $(this);
 	    	//设置登录按钮  为不可点击
 	    	btn.text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
-	       	$.post("/login/loginNoMa",data.field,function(rs){
+	       	$.post("/login/login",data.field,function(rs){///login/loginNoMa
 	       		//设置登录按钮 恢复可点击   在前端防止 重复点击
 	       		btn.text("登录").attr("disabled",false).removeClass("layui-disabled");
 	       		layer.msg(rs.msg);

@@ -33,8 +33,6 @@ public class Salesback implements Serializable {
 
     private Integer customerid;
 
-    private String paytype;
-
     private Date salesbacktime;
 
     private Double salebackprice;

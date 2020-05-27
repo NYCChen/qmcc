@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -86,7 +88,9 @@ public class SalesController {
             //获得当前系统用户
             User user = (User) WebUtils.getSession().getAttribute("user");
             //设置操作人
-            salesVo.setOperateperson(user.getName());
+            if(null != user){
+                salesVo.setOperateperson(user.getName());
+            }
             //设置销售时间
             salesVo.setSalestime(new Date());
             salesService.save(salesVo);
@@ -112,6 +116,26 @@ public class SalesController {
             return ResultObj.UPDATE_ERROR;
         }
 
+    }
+    /**
+     * 微信小程序根据Id查询一个销售信息
+     */
+    @RequestMapping("weloadOneSales")
+    public Map<String, Object> weloadOneSales(Integer id) {
+
+        Map<String, Object> inportMap = new HashMap<>();
+        Sales sales  = this.salesService.getById(id);
+        Customer customer = this.customerService.getById(sales.getCustomerid());
+        if(null!=customer) {
+            sales.setCustomername(customer.getCustomername());
+        }
+        Goods goods = this.goodsService.getById(sales.getGoodsid());
+        if(null!=goods) {
+            sales.setGoodsname(goods.getGoodsname());
+            sales.setSize(goods.getSize());
+        }
+        inportMap.put("sales", sales);
+        return inportMap;
     }
 
     /**

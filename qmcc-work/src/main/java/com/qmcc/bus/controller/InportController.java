@@ -104,7 +104,9 @@ public class InportController {
         try {
             inportVo.setInporttime(new Date());
             User user=(User) WebUtils.getSession().getAttribute("user");
-            //inportVo.setOperateperson(user.getName());
+            if (null != user){
+                inportVo.setOperateperson(user.getName());
+            }
             this.inportService.save(inportVo);
             return ResultObj.ADD_SUCCESS;
         } catch (Exception e) {

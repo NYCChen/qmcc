@@ -38,5 +38,4 @@ public class ResultObj {
 	private String msg;
 
 
-
 }
