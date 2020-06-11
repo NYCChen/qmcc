@@ -1,0 +1,45 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.qmcc.sys.config.ShiroAutoConfiguration",
+      "name": "shiro",
+      "type": "com.qmcc.sys.config.ShiroAutoConfiguration"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.qmcc.sys.config.ShiroAutoConfiguration",
+      "name": "shiro.anon-urls",
+      "type": "java.lang.String[]"
+    },
+    {
+      "sourceType": "com.qmcc.sys.config.ShiroAutoConfiguration",
+      "name": "shiro.authc-ulrs",
+      "type": "java.lang.String[]"
+    },
+    {
+      "sourceType": "com.qmcc.sys.config.ShiroAutoConfiguration",
+      "defaultValue": "md5",
+      "name": "shiro.hash-algorithm-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.qmcc.sys.config.ShiroAutoConfiguration",
+      "defaultValue": 2,
+      "name": "shiro.hash-iterations",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.qmcc.sys.config.ShiroAutoConfiguration",
+      "name": "shiro.log-out-url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.qmcc.sys.config.ShiroAutoConfiguration",
+      "defaultValue": "\/index.html",
+      "name": "shiro.login-url",
+      "type": "java.lang.String"
+    }
+  ]
+}
